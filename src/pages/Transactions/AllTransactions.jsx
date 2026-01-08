@@ -13,20 +13,18 @@ const AllTransactions = ({ transactionInfo }) => {
             <span className="full-text">{transaction.description}</span>
           </div>
           <span className="transaction-id">
-            <span className="full-text">{"#" + transaction.id}</span>
+            {"#" + transaction.id}
           </span>
           <span className="transaction-type">
-            <span className="full-text">{transaction.type}</span>
+            {transaction.type}
           </span>
-          <span className="transaction-card">
-            <span className="full-text">{transaction.card}</span>
+          <span className="transaction-card">       {transaction.card}
           </span>
-          <span className="transaction-date">
-            <span className="full-text">{transaction.date.slice(0, 6) + ", " +  transaction.time}</span>
+          <span className="transaction-date">       {transaction.date.slice(0, 6) + ", " +  transaction.time}  
           </span>
           <span style={{color: transaction.color()}} className="transaction-amount">{transaction.cost}</span>
           <span className="transaction-receipt">
-            <span className="full-text">Download</span>
+              Download
           </span>
         </div>
       ))}

@@ -15,7 +15,7 @@ const Accounts = ({accountBalances, transactions, cards, accountsData, invoices}
 
   function AccountBarChart({accountsData}) {
     return (
-      <div style={{ height: "315px", marginTop: "30px" }}>
+      <div style={{ height: "18rem", marginTop: "1.7rem" }}>
         <ResponsiveContainer width={"95%"} height={"100%"}>
           <BarChart
             data={accountsData}
@@ -69,15 +69,22 @@ const Accounts = ({accountBalances, transactions, cards, accountsData, invoices}
           </div>
           <div className="last-transaction-box">
             {transactions.map((transaction, index) => (
-              <div className="last-transaction-items" key={index}>
-                <img src={transaction.image} style={{backgroundColor: transaction.background}}></img>
-                <div className="last-transaction-details">
+              <div className="transaction-content" key={index}>
+                <div className="transaction-description">
+                  <img src={transaction.image} style={{backgroundColor: transaction.background}}></img>
+                  <div className="last-transaction-details">
+                    <span className="last-transaction-description">{transaction.description}</span>
+                    <span className="last-transaction-date">{transaction.date.slice(0, 6) + ", " +  transaction.time}</span>
+                  </div>
+                </div>
+                
+                {/* <div className="last-transaction-details">
                   <span className="last-transaction-description">{transaction.description}</span>
                   <span className="last-transaction-date">{transaction.date.slice(0, 6) + ", " +  transaction.time}</span>
-                </div>
-                <span className="last-transaction-type">{transaction.type}</span>
-                <span className="last-transaction-card">{transaction.card}</span>
-                <span className="last-transaction-status">Completed</span>
+                </div> */}
+                <span className="transaction-type">{transaction.type}</span>
+                <span className="transaction-card">{transaction.card}</span>
+                <span className="transaction-status">Completed</span>
                 <span style={{ color: transaction.color() }}  className="last-transaction-amount spotify-transaction-amount">{transaction.cost}</span>
               </div>
             ))}

@@ -684,6 +684,12 @@ html {
   flex-direction: row;
   gap: var(--gap-xxlg);
   margin-top: var(--margin-xxlg);
+  align-items: stretch;
+}
+
+.last-main-section .quick-transfer,
+.last-main-section .balance-history {
+  min-height: 0;
 }
 
 .quick-transfer {
@@ -691,6 +697,8 @@ html {
   display: flex;
   flex-direction: column;
   gap: var(--gap-def);
+  flex: 1;
+  min-height: 0;
 }
 
 .quick-transfer-text p {
@@ -706,6 +714,8 @@ html {
   padding: var(--padding-xlg);
   border-radius: var(--radius-xlg);
   background-color: white;
+  flex: 1;
+  min-height: 0;
 }
 
 .personnels-row {
@@ -818,7 +828,8 @@ html {
   display: flex;
   flex-direction: column;
   gap: var(--gap-def);
-  flex-grow: 1;
+  flex: 1;
+  min-height: 0;
 }
 
 .balance-history-text p {
@@ -1050,25 +1061,17 @@ html {
 
 .title-type,
 .transaction-type {
-  /* width: 13%; */
   color: #343c6a;
 }
 
 .title-card,
 .transaction-card {
-  /* width: 14%; */
   color: #343c6a;
 }
 
 .title-date,
 .transaction-date {
-  /* width: 17%; */
   color: #343c6a;
-}
-
-.title-amount,
-.transaction-amount {
-  /* width: 10%; */
 }
 
 .title-receipt,
@@ -1104,6 +1107,18 @@ html {
 .content-spotify > *,
 .transaction-history-items > * {
   min-width: 0;
+
+  font-size: var(--text-def);
+  display: flex;
+  gap: var(--gap-sm);
+  font-family: "Inter-Medium", sans-serif;
+  align-items: center;
+  display: block;
+}
+
+.transaction-description {
+  display: flex;
+  gap: var(--gap-xs);
 }
 
 .title-amount,
@@ -1117,17 +1132,14 @@ html {
 .spotify-receipt {
   justify-self: end;
 }
-
-.full-text,
-.short-text,
-.transaction-amount {
+/* {
   font-size: var(--text-def);
   display: flex;
   gap: var(--gap-sm);
   font-family: "Inter-Medium", sans-serif;
   align-items: center;
   display: block;
-}
+} */
 
 .transaction-receipt {
   border: 0.1rem solid #343c6a;
@@ -1276,7 +1288,7 @@ html {
   font-weight: 700;
   font-family: "Inter-Bold", sans-serif;
   margin: 0;
-  letter-spacing: -0.01rem;
+  letter-spacing: 0.01rem;
   color: #0f172a;
 }
 
@@ -1382,6 +1394,20 @@ html {
   display: grid;
   grid-template-columns: 2fr 1fr;
   gap: var(--gap-xxlg);
+  align-items: stretch;
+}
+
+.transaction-and-card .last-transaction,
+.transaction-and-card .card {
+  display: flex;
+  flex-direction: column;
+  min-height: 0;
+}
+
+.transaction-and-card .last-transaction-box,
+.transaction-and-card .main-card-box {
+  flex: 1;
+  min-height: 0;
 }
 
 .last-transaction,
@@ -1404,13 +1430,14 @@ html {
 .last-transaction-box,
 .add-card-box,
 .card-setting-box {
-  display: flex;
-  flex-direction: column;
+  display: grid;
+  grid-template-rows: auto 1fr;
   padding: var(--padding-lg);
-  border-radius: var(--radius-xxlg);
+  border-radius: var(--radius-xlg);
   background-color: white;
   position: relative;
-  gap: var(--gap-lg);
+  flex: 1;
+  min-height: 0;
 }
 
 .last-transaction-items {
@@ -1420,8 +1447,8 @@ html {
   align-items: center;
 }
 
-.last-transaction-items img {
-  padding: var(--padding-md);
+.transaction-description img {
+  padding: var(--padding-sm);
   border-radius: var(--radius-def);
   width: clamp(2.8rem, 3.5vw, 3.2rem);
   height: clamp(2.8rem, 3.5vw, 3.2rem);
@@ -1472,6 +1499,7 @@ html {
   display: grid;
   grid-template-columns: 2fr 1fr;
   gap: var(--gap-xxlg);
+  align-items: stretch;
 }
 
 .overview,
@@ -1595,7 +1623,8 @@ html {
   background-color: white;
   position: relative;
   justify-content: space-between;
-  /* flex-grow: 1; */
+  flex: 1;
+  min-height: 0;
 }
 
 .invoice {
@@ -1603,6 +1632,8 @@ html {
   flex-direction: row;
   justify-content: space-between;
   align-items: center;
+  flex: 1;
+  min-height: 0;
 }
 
 .invoice-details {
@@ -1611,10 +1642,10 @@ html {
 }
 
 .invoice img {
-  padding: var(--padding-sm);
-  border-radius: var(--radius-xlg);
-  width: clamp(2.4rem, 3vw, 2.8rem);
-  height: clamp(2.4rem, 3vw, 2.8rem);
+  /* padding: var(--padding-md); */
+  border-radius: var(--radius-md);
+  width: clamp(2.4rem, 3vw, 5rem);
+  height: clamp(2.4rem, 3vw, 5rem);
   object-fit: contain;
   display: block;
 }
@@ -2410,6 +2441,7 @@ html {
 
   .transaction-card,
   .transaction-receipt,
+  .transaction-status,
   .title-receipt,
   .title-card {
     display: none;
@@ -2430,21 +2462,10 @@ html {
   .dash-transaction-main {
     justify-content: flex-start;
   }
-  /* .transaction-summary{
-    grid-template-columns: repeat(2, 1fr);
-  } */
 }
 
-@media (max-width: 780px) {
+@media (max-width: 800px) {
   body {
     border: 2px solid red;
   }
-  /* 
-  .full-text {
-    display: none;
-  }
-
-  .short-text {
-    display: block;
-  } */
 }
