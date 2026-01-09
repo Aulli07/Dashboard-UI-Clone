@@ -395,7 +395,7 @@ const App = () => {
 
   const cardList = [];
   cardList.push(new createCardList("./icons/credit-card_icon3.png", "Secondary", "BRC Bank", "**** **** 4300", "Michel", "#E7EDFF"));
-  cardList.push(new createCardList("./icons/credit-card_icon2.png", "Secondary", "DBL Bank", "**** **** 5600", "William", "#ff82ac4"));
+  cardList.push(new createCardList("./icons/credit-card_icon2.png", "Secondary", "DBL Bank", "**** **** 5600", "William", "#ff82ac45"));
   cardList.push(new createCardList("./icons/credit-card_icon3.png", "Secondary", "ARM Bank", "**** **** 7580", "Edward", "#FFF5D9"))
 
 
@@ -440,6 +440,7 @@ const App = () => {
   let totalLoanAmount = 0;
   let totalRepay = 0;
   let totalInstallment = 0
+  
   function createLoanDetails(id, amount, repay, duration, interest, installment) {
     this.id = id;
     this.amount = amount;

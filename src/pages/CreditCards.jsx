@@ -18,6 +18,8 @@ const CreditCards = ({cards, cardList, cardAdditionList, cardSettingData}) => {
           <Card card={cards.find((item) => item.id == 1)} />
           <Card card={cards.find((item) => item.id == 2)} />
           <Card card={cards.find((item) => item.id == 1)} />
+        </div>
+        <div className="card-expense-and-list-section">
           <div className="card-expense-statistics">
             <div className="card-expense-statistics-text">
               <p>Card Expense Statistics</p>
@@ -44,14 +46,14 @@ const CreditCards = ({cards, cardList, cardAdditionList, cardSettingData}) => {
               </div>
             </div>
           </div>
-          <div className="last-transaction card-list grid-col-span-2">
+          <div className="last-transaction card-list">
             <div className="last-transaction-text card-list-text">
               <p>Card List</p>
             </div>
             <div className="last-transaction-box card-list-box">
               {cardList.map((card, index) => (
-                <div className="last-transaction-items card-list-items" key={index}>
-                  <div className="spotify-transaction-icon card-icon-1 brc-bank-icon ">
+                <div className="card-list-items" key={index}>
+                  <div className="card-list-icon">
                     <img style={{backgroundColor: card.backgroundColor}} src={card.image}></img>
                   </div>
                   <div className="last-transaction-details card-list-details">
@@ -75,8 +77,9 @@ const CreditCards = ({cards, cardList, cardAdditionList, cardSettingData}) => {
               ))}
             </div>
           </div>
-          
-          <div className="add-card grid-col-span-2">
+        </div>
+        <div className="add-card-and-setting">
+          <div className="add-card">
             <div className="add-card-text">
               <p>Add New Card</p>
             </div>

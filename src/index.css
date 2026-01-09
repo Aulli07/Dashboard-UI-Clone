@@ -1238,17 +1238,13 @@ html {
 
 .transaction-summary {
   margin-top: var(--margin-def);
-  /* width: 70%; */
   display: grid;
   grid-template-columns: repeat(3, 1fr);
   gap: var(--gap-def);
-  /* justify-content: center;
-  align-items: stretch; */
   box-sizing: border-box;
 }
 
 .summary-card {
-  /* width: 15rem; */
   flex: 1;
   padding: var(--padding-xlg);
   border-radius: var(--radius-def);
@@ -1324,17 +1320,22 @@ html {
 .investments-section {
   display: flex;
   flex-direction: row;
-  justify-content: space-between;
+  gap: var(--gap-lg);
+  align-content: stretch;
+  /* justify-content: space-between; */
 }
 
 .main-balance,
 .invested-amount {
-  padding: var(--padding-xxlg);
+  padding: var(--padding-xlg);
   display: flex;
   flex-direction: row;
+  align-items: center;
   background-color: #ffffff;
   border-radius: var(--radius-xlg);
   gap: var(--gap-sm);
+  flex: 1;
+  min-width: 0
 }
 
 .main-balance-icon,
@@ -1357,6 +1358,7 @@ html {
   background-color: #e7edff;
   border-radius: 100%;
 }
+
 
 .account-expense-icon,
 .no-investments-icon {
@@ -1388,6 +1390,7 @@ html {
   font-size: var(--text-xlg);
   font-family: "Inter-Bold", sans-serif;
   color: #343c6a;
+  word-wrap: break-word;
 }
 
 .transaction-and-card {
@@ -1688,28 +1691,41 @@ html {
   /* padding: 30px 20px; */
 }
 
-.trending-stock {
-  flex-grow: 1;
+/* .trending-stock {
+  flex: 1;
+  min-height: 0;
 }
 
 .my-investment-box {
   display: grid;
   gap: var(--gap-def);
   background-color: transparent;
-}
+} */
 
 .investment {
   padding: var(--padding-def) var(--padding-sm);
   display: grid;
-  grid-template-columns: 0.8fr 3fr 2.5fr 1fr;
+  grid-template-columns: 3.6rem minmax(0, 3fr) minmax(0, 2.5fr) minmax(0, 1fr);
+  grid-auto-flow: column;
+  column-gap: var(--gap-sm);
   align-items: center;
   border-radius: var(--radius-lg);
   background-color: #fff;
 }
 
+.investment > * {
+  min-width: 0;
+  font-size: var(--text-def);
+  display: flex;
+  gap: var(--gap-sm);
+  font-family: "Inter-Medium", sans-serif;
+  align-items: flex-start;
+  display: block;
+}
+
 .investment img {
   width: 3.6rem;
-  margin-right: var(--margin-sm);
+  margin-right: 0;
 }
 
 .investment-and-revenue {
@@ -1722,7 +1738,24 @@ html {
   display: grid;
   grid-template-columns: 1.6fr 1fr;
   gap: var(--gap-xxlg);
+  flex: 1;
+  min-height: 0;
+  align-items: stretch;
 }
+
+.trending-stock {
+  flex: 1;
+  min-height: 0;
+}
+
+.my-investment-box {
+  display: grid;
+  gap: var(--gap-def);
+  background-color: transparent;
+  flex: 1;
+  min-height: 0;
+}
+
 .investment-name,
 .investment-cost,
 .investment-rate {
@@ -1773,7 +1806,10 @@ html {
 .stock,
 .trending-stock-items {
   display: grid;
-  grid-template-columns: 1fr 2fr 2fr 1fr; /* flexible layout */
+  grid-template-columns: minmax(0, 1fr) minmax(0, 2.5fr) minmax(0, 2fr) minmax(
+      0,
+      1fr
+    );
   align-items: center;
   padding: var(--padding-md) 0;
 }
@@ -1800,11 +1836,17 @@ html {
 
 .cards-section {
   display: grid;
-  grid-template-columns: 1fr 1fr 1fr;
+  grid-auto-columns: minmax(0, 1fr);
+  grid-auto-flow: column;
+  overflow-x: auto;
   gap: var(--gap-xxlg);
-  /* flex-direction: row; */
-  /* gap: 20px; */
+  padding-bottom: var(--padding-sm);
 }
+/* grid-template-columns: 1fr 1fr 1fr;
+  gap: var(--gap-xxlg); */
+/* flex-direction: row; */
+/* gap: 20px; */
+/* } */
 
 .credit-card-first {
   background-color: #151389;
@@ -1814,10 +1856,20 @@ html {
   background-color: #151389;
 }
 
+.card-expense-and-list-section {
+  display: grid;
+  grid-template-columns: 1fr 2fr;
+  gap: var(--gap-xxlg);
+  align-items: stretch;
+}
+
 .card-expense-statistics-box {
+  display: flex;
   flex-direction: column;
   align-items: center;
   gap: var(--gap-xxlg);
+  flex: 1;
+  min-height: 0;
 }
 
 .card-expense-statistics-box img {
@@ -1837,13 +1889,14 @@ html {
 .arm-bank,
 .mcp-bank {
   display: flex;
-  gap: var(--gap-sm);
-}
+  align-items: center;
+  gap: var(--gap-sm);}
 
 .dbl-bank span,
 .brc-bank span,
 .arm-bank span,
 .mcp-bank span {
+  flex: 1 1 auto;
   border-radius: var(--radius-sm);
   background-color: #1814f3;
 }
@@ -1861,31 +1914,41 @@ html {
 }
 
 .card-list-box {
+  display: grid;
+  grid-template-rows: none;
+  grid-auto-rows: minmax(0, 1fr);
+  align-items: stretch;
   gap: var(--gap-xlg);
   padding: 0;
   background-color: transparent;
+  flex: 1;
+  min-height: 0;
 }
 
 .card-list-items {
   background-color: white;
   padding: var(--padding-def) var(--padding-lg);
+
   border-radius: var(--radius-lg);
-  grid-template-columns: 0.6fr 1fr 0.8fr 1.3fr 1.1fr max-content;
+  grid-template-columns:
+    minmax(0, 0.6fr) minmax(0, 1fr) minmax(0, 0.8fr) minmax(0, 1.3fr)
+    minmax(0, 1.1fr) max-content;
+
+  flex: 1;
+  min-height: 0;
+  min-width: 0;
+  display: grid;
+  align-items: center;
+  /* align-items: stretch; */
 }
 
-.dbl-bank-icon img {
-  padding: var(--padding-def);
-  background-color: #e7edff;
-}
-
-.brc-bank-icon img {
-  padding: var(--padding-def);
-  background-color: #ff82ac45;
-}
-
-.arm-bank-icon img {
-  padding: var(--padding-def);
-  background-color: #fff5d9;
+.card-list-icon img {
+  width: clamp(2rem, 4vw, 3.5rem);
+  height: clamp(2rem, 4vw, 3.5rem);
+  object-fit: contain;
+  display: block;
+  padding: var(--padding-sm);
+  border-radius: var(--radius-def);
 }
 
 .card-list-details {
@@ -1901,9 +1964,18 @@ html {
   color: #1814f3;
 }
 
+.add-card-and-setting {
+  display: grid;
+  grid-template-columns: 2fr 1fr;
+  gap: var(--gap-xxlg);
+  align-items: stretch;
+  min-height: 1;
+}
+
 .add-card-box {
   gap: var(--gap-xlg);
   padding: var(--padding-xlg);
+  min-height: 1;
 }
 
 .add-card-description span {
@@ -1959,21 +2031,38 @@ html {
 }
 
 .card-setting-box {
-  padding: var(--padding-xxlg);
+  padding: var(--padding-xlg);
+  flex: 1;
+  min-height: 0;
   display: flex;
+  flex-direction: column;
   gap: var(--gap-lg);
 }
 
 .card-setting-item {
   display: flex;
+  flex-direction: row;
   gap: var(--gap-md);
+  flex: 1 1 0;
+  min-height: 0;
+  align-items: stretch;
+  min-width: 0;
 }
 
 .card-setting-icon {
   display: flex;
   align-items: center;
+  flex: 0 0 auto;
+  align-self: center;
   padding: var(--padding-md);
   border-radius: var(--radius-def);
+}
+
+.card-setting-icon img {
+  width: clamp(2.2rem, 3.5vw, 2.8rem);
+  height: clamp(2.2rem, 3.5vw, 2.8rem);
+  object-fit: contain;
+  display: block;
 }
 
 .block-icon {
@@ -1999,6 +2088,8 @@ html {
   align-items: left;
   justify-content: center;
   gap: var(--gap-xs);
+  flex: 1;
+  min-width: 0;
 }
 
 .card-setting-name {
@@ -2012,6 +2103,12 @@ html {
 }
 
 /* Loans Page */
+
+.service-main {
+  width: clamp(3.6rem, 4vw, 4.3rem);
+  height: clamp(3.6rem, 4vw, 4.3rem);
+  object-fit: contain;
+}
 
 .loan-overview-box {
   padding: var(--padding-lg);
@@ -2053,7 +2150,10 @@ html {
 .loan-detail-box {
   display: grid;
   align-items: center;
-  grid-template-columns: 1fr 2fr 2fr 2fr 2fr 2fr 2fr;
+  grid-template-columns: minmax(0, 1fr);
+  grid-auto-flow: column;
+  /* grid-auto-columns: repeat(6, minmax(0, 2fr)); */
+  grid-auto-columns: minmax(0, 2fr);
   padding: var(--padding-xxs) 0;
 }
 
@@ -2092,9 +2192,26 @@ html {
 .services {
   padding: var(--padding-lg);
   display: grid;
-  grid-template-columns: 0.75fr 2fr 2fr 2fr 2fr 2fr;
+  grid-template-columns: minmax(0, 0.9fr);
+  grid-auto-columns: minmax(0, 2fr);
+  grid-auto-flow: column;
   border-radius: var(--radius-lg);
   background-color: #ffffff;
+}
+
+.services > * {
+  min-width: 0;
+  font-size: var(--text-def);
+  display: flex;
+  gap: var(--gap-sm);
+  font-family: "Inter-Medium", sans-serif;
+  align-items: flex-start;
+  display: block;
+}
+
+.services img {
+  width: 3.6rem;
+  margin-right: 0;
 }
 
 .service {
@@ -2459,13 +2576,74 @@ html {
     align-content: stretch;
   }
 
+  .investment-rate {
+    display: none;
+  }
+
+  .trending-stock-items > *:last-child,
+  .stock > *:last-child {
+    display: none;
+  }
+
+  .trending-stock-items,
+  .stock {
+    display: grid;
+    align-content: stretch;
+    grid-template-columns: minmax(0, 1fr) minmax(0, 2.5fr) minmax(0, 2fr);
+  }
+
   .dash-transaction-main {
     justify-content: flex-start;
   }
+
+  .add-card-form {
+    grid-template-columns: repeat(1, 1fr);
+  }
+
+  .card-list-items > *:nth-child(4),
+  .card-list-items > *:last-child {
+    display: none;
+  }
+
+  .card-list-items {
+    display: grid;
+    align-content: stretch;
+    grid-template-columns:
+    minmax(0, 0.6fr) minmax(0, 1.2fr) minmax(0, 1fr) minmax(0, 1.3fr);
+  }
+
+  .loan-overview-items > *:last-child, .loan-overview-items > *:nth-child(6), .loan-overview-items > *:nth-child(5),
+  .loan-detail-box > *:last-child, .loan-detail-box > *:nth-child(6), .loan-detail-box > *:nth-child(5) {
+    display: none;
+  }
+
+  .loan-overview-items,
+  .loan-detail-box {
+    display: grid;
+    align-content: stretch;
+    grid-auto-columns: minmax(0, 1fr);
+   
+  }
+
+  /* .card-list-items {
+    grid-template-columns: minmax(0, 1fr) minmax(0, 1.5fr) minmax(0, 1.5fr) minmax(
+        0,
+        1.5fr
+      );
+  } */
 }
 
 @media (max-width: 800px) {
   body {
     border: 2px solid red;
+  }
+
+  .services > *:last-child, .services > *:nth-child(5) {
+    display: none;
+  }
+
+  .services {
+    display: grid;
+    align-content: stretch;
   }
 }

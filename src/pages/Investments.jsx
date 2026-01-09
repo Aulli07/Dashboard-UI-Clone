@@ -1,16 +1,27 @@
 import { LineChart, Line, XAxis, YAxis, CartesianGrid, ResponsiveContainer } from "recharts"
 import BalanceSection from "../components/Balance"
+import useWindowWidth from "../hooks/useWindowWidth"
 
 const Investments = ({investmentBalances, investmentData, revenueData, investments, stockData}) => {
 
+  const { isBrowser } = useWindowWidth();
+
+  // investments = (!isBrowser) ? investments.slice(0, 3) : investments;
+
+  // stockData = (!isBrowser) ? stockData.slice(0, 3) : stockData;
+
   function InvestmentLineChart() {
     return (
-      <div className="yearly-investment-box" style={{height: "322px"}}> 
+      <div className="yearly-investment-box" style={{height: "20rem"}}> 
         <ResponsiveContainer width={"100%"} height={"100%"}>
-          <LineChart data={investmentData}>
+          <LineChart data={(isBrowser) ? investmentData : investmentData.slice(0, 3)}>
+
             <XAxis dataKey='year' axisLine={false} tickLine={false} tick={{fontSize: 13, fontFamily: "Inter-Medium", fill: "#718EBF"}} tickMargin={15}></XAxis>
+
             <YAxis axisLine={false} tickLine={false} tick={{fontSize: 13, fontFamily: "Inter-Medium", fill: "#718EBF"}} ticks={[0, 10000, 20000, 30000, 40000, 50000]} tickMargin={10}></YAxis>
+
             <CartesianGrid vertical={false} />
+
             <Line dataKey='amount' fill="#fff" stroke="gold" strokeWidth={3}></Line>
           </LineChart>
         </ResponsiveContainer>
@@ -20,13 +31,19 @@ const Investments = ({investmentBalances, investmentData, revenueData, investmen
 
   function RevenueLineChart() {
     return (
-      <div className="monthly-revenue-box" style={{height: "322px"}}> 
+      <div className="monthly-revenue-box" style={{height: "20rem"}}> 
+
         <ResponsiveContainer width={"100%"} height={"100%"}>
-          <LineChart data={revenueData}>
+
+          <LineChart data = {(isBrowser) ? revenueData : revenueData.slice(0, 3)} >
+
             <XAxis dataKey='year' axisLine={false} tickLine={false} tick={{fontSize: 13, fontFamily: "Inter-Medium", fill: "#718EBF"}} tickMargin={15}></XAxis>
+
             <YAxis axisLine={false} tickLine={false} tick={{fontSize: 13, fontFamily: "Inter-Medium", fill: "#718EBF"}} ticks={[0, 10000, 20000, 30000, 40000, 50000]} tickMargin={10}></YAxis>
+
             <CartesianGrid vertical={false} />
             <Line dataKey='amount' type="monotone" stroke="lightgreen" strokeWidth={3}></Line>
+            
           </LineChart>
         </ResponsiveContainer>
       </div>
@@ -81,7 +98,7 @@ const Investments = ({investmentBalances, investmentData, revenueData, investmen
           </div>
           <div className="trending-stock-box">
           <div className="trending-stock-items">
-            <span>SL No</span>
+            <span>No</span>
             <span>Name</span>
             <span>Price</span>
             <span>Return</span>
