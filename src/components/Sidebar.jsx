@@ -60,7 +60,7 @@ const Sidebar = ({ setHeaderText }) => {
       to: "/setting",
       icon: "/icons/settings_icon.png",
       activeIcon: "/icons/service_icon.png",
-      header: "Setting",
+      header: "Setting"
     },
     {
       label: "Insights",

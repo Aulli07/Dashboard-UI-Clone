@@ -10,8 +10,14 @@ import {
   YAxis,
   CartesianGrid,
 } from "recharts";
+import useWindowWidth from "../hooks/useWindowWidth";
 
-const Accounts = ({accountBalances, transactions, cards, accountsData, invoices}) => {
+const Accounts = ({accountBalances, transactions, cards, accountsData, invoices}) => 
+{
+
+  const { isBrowser } = useWindowWidth();
+  
+  const visibleAccountBalances = (!isBrowser) ? accountBalances.slice(0, 3) : accountBalances;
 
   function AccountBarChart({accountsData}) {
     return (
@@ -53,7 +59,7 @@ const Accounts = ({accountBalances, transactions, cards, accountsData, invoices}
 
   return (
     <div className="accounts-container">
-      <BalanceSection balances={accountBalances} />
+      <BalanceSection balances={visibleAccountBalances} />
 
       <div className="transaction-and-card">
         <div className="last-transaction">

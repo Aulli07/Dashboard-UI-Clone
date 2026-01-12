@@ -5,6 +5,8 @@ import useWindowWidth from "../hooks/useWindowWidth"
 const Investments = ({investmentBalances, investmentData, revenueData, investments, stockData}) => {
 
   const { isBrowser } = useWindowWidth();
+  
+    const visibleInvestmentBalances = (!isBrowser) ? investmentBalances.slice(0, 2) : investmentBalances;
 
   // investments = (!isBrowser) ? investments.slice(0, 3) : investments;
 
@@ -52,7 +54,7 @@ const Investments = ({investmentBalances, investmentData, revenueData, investmen
 
   return (
     <div className="investments-container">
-      <BalanceSection balances={investmentBalances} />
+      <BalanceSection balances={visibleInvestmentBalances} />
       <div className="investment-and-revenue">
         <div className="yearly-investment">
           <div className="yearly-investment-text">

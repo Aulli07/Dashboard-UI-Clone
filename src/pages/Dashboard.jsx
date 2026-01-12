@@ -23,7 +23,23 @@ import { useState } from "react";
 
 
 function DashboardTransactions({ recentTransactions }) {
-  const { isBrowser } = useWindowWidth();
+  const { isBrowser, isMobile } = useWindowWidth();
+
+  const formatTransactionDescription = (description) => {
+    if (!isMobile) return description;
+    if (!description) return description;
+
+    const normalized = String(description).trim().toLowerCase();
+    if (
+      normalized === "deposit into my card" ||
+      normalized === "deposit with my card" ||
+      normalized === "deposit to my card"
+    ) {
+      return "Card Deposit";
+    }
+
+    return description;
+  };
   
   return (
     <>
@@ -38,8 +54,10 @@ function DashboardTransactions({ recentTransactions }) {
               className="dash-transaction-image"
             ></img>
             <div className="dash-transaction-details">
-              <p className="dash-transaction-description">{transaction.description}</p>
-              <span className="dash-transaction-date">{transaction.date}</span>
+              <p className="dash-transaction-description">
+                {formatTransactionDescription(transaction.description)}
+              </p>
+              <span className="dash-transaction-date">{(isMobile) ? transaction.date.slice(0, 6) : transaction.date}</span>
             </div>
           </div>
           <span
@@ -310,6 +328,8 @@ const Dashboard = ({
   balanceTableData
 }) => {
 
+  const { isMobile } = useWindowWidth();
+
   const firstCard = cards.find((item) => item.id == 1);
   const secondCard = cards.find((item) => item.id == 2);
 
@@ -343,7 +363,7 @@ const Dashboard = ({
               to="/transactions"
               className={({ isActive }) => (isActive ? "sub-link active" : "sub-link")}
             >
-              <p>Recent Transactions</p>
+              <p>{isMobile ? "Recents" : "Recent Transactions"}</p>
             </NavLink>
           </div>
           <div className="transaction-box">

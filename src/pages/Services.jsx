@@ -1,9 +1,15 @@
 import BalanceSection from "../components/Balance";
+import useWindowWidth from "../hooks/useWindowWidth";
 
 const Services = ({serviceBalances, services}) => {
+
+  const { isMobile } = useWindowWidth();
+
+  const visibleServiceBalances = isMobile ? serviceBalances.slice(0, 2) : serviceBalances;
+
   return (
     <div className="accounts-container">
-      <BalanceSection balances={serviceBalances} />
+      <BalanceSection balances={visibleServiceBalances} />
 
       <div className="loan-overview">
         <div className="loan-overview-text">
