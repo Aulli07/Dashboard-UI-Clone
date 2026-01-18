@@ -355,7 +355,6 @@ const Dashboard = ({
             </NavLink>
           </div>
           <Card card={secondCard} />
-          {/* <Card card={cards.find((item) => item.id == 2)} /> */}
         </div>
         <div className="recent-transaction">
           <div className="transaction-text">
