@@ -495,6 +495,7 @@ const App = () => {
           headerText={headerText}
           transactions={transactionInfo}
           imageUrl={headerInfo.imageUrl}
+          setHeaderText={setHeaderText}
         />
 
         <Body
@@ -524,8 +525,7 @@ const App = () => {
         />
 
         <div className="footer">
-          Coded by <a href="">Alwell Chukwuka</a>. Find more at{" "}
-          <a href="">www.github.aulli_chukwuka.com</a>
+          Developed by <a href=""> Alwell Chukwuka</a>
         </div>
       </div>
     </div>

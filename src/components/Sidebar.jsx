@@ -2,7 +2,7 @@ import React from "react";
 import { NavLink } from "react-router-dom";
 import { useState } from "react";
 
-const Sidebar = ({ setHeaderText }) => {
+const Sidebar = ({ setHeaderText}) => {
   const [images, setImages] = useState("/home_icon.png");
 
   const links = [
@@ -62,13 +62,6 @@ const Sidebar = ({ setHeaderText }) => {
       activeIcon: "/icons/service_icon.png",
       header: "Setting"
     },
-    {
-      label: "Insights",
-      to: "/insights",
-      icon: "/icons/settings_icon.png",
-      activeIcon: "/icons/service_icon.png",
-      header: "Insights",
-    },
   ];
 
   return (
@@ -92,7 +85,7 @@ const Sidebar = ({ setHeaderText }) => {
                 <span
                   className={isActive ? "link active" : "link"}
                   onClick={() => {
-                    setHeaderText(link.header);
+                    setHeaderText?.(link.header);
                   }}
                 >
                   {link.label}

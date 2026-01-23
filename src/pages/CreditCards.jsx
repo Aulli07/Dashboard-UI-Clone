@@ -1,15 +1,32 @@
 import Card from "../components/Card";
+import SearchBar from "../components/SearchBar";
+import useWindowWidth from "../hooks/useWindowWidth";
 
-const CreditCards = ({cards, cardList, cardAdditionList, cardSettingData}) => {
-
-  function AddCard({searchBox}) {
+const CreditCards = ({
+  cards,
+  cardList,
+  cardAdditionList,
+  cardSettingData,
+  transactionInfo,
+}) => {
+  function AddCard({ searchBox }) {
     return (
-      <input className="add-card-input" placeholder={searchBox.holdname} type="text"></input>
-    )
+      <input
+        className="add-card-input"
+        placeholder={searchBox.holdname}
+        type="text"
+      ></input>
+    );
   }
+
+  const { isNormal } = useWindowWidth();
 
   return (
     <div className="credit-cards-container">
+      <div className="component-search">
+        {isNormal && <SearchBar transactions={transactionInfo} />}
+      </div>
+
       <div className="main-dash-content credit-cards">
         <div className="main-card-text">
           <p>My Cards</p>
@@ -54,25 +71,46 @@ const CreditCards = ({cards, cardList, cardAdditionList, cardSettingData}) => {
               {cardList.map((card, index) => (
                 <div className="card-list-items" key={index}>
                   <div className="card-list-icon">
-                    <img style={{backgroundColor: card.backgroundColor}} src={card.image}></img>
+                    <img
+                      style={{ backgroundColor: card.backgroundColor }}
+                      src={card.image}
+                    ></img>
                   </div>
                   <div className="last-transaction-details card-list-details">
-                    <span className="last-transaction-description card-list-text">Card Type</span>
-                    <span className="last-transaction-date card-list-name">{card.type}</span>
+                    <span className="last-transaction-description card-list-text">
+                      Card Type
+                    </span>
+                    <span className="last-transaction-date card-list-name">
+                      {card.type}
+                    </span>
                   </div>
                   <div className="last-transaction-details card-list-details">
-                    <span className="last-transaction-description card-list-text">Bank</span>
-                    <span className="last-transaction-date card-list-name">{card.bank}</span>
+                    <span className="last-transaction-description card-list-text">
+                      Bank
+                    </span>
+                    <span className="last-transaction-date card-list-name">
+                      {card.bank}
+                    </span>
                   </div>
                   <div className="last-transaction-details card-list-details">
-                    <span className="last-transaction-description card-list-text">Card Number</span>
-                    <span className="last-transaction-date card-list-name">{card.number}</span>
+                    <span className="last-transaction-description card-list-text">
+                      Card Number
+                    </span>
+                    <span className="last-transaction-date card-list-name">
+                      {card.number}
+                    </span>
                   </div>
                   <div className="last-transaction-details card-list-details">
-                    <span className="last-transaction-description card-list-text">Namain Card</span>
-                    <span className="last-transaction-date card-list-name">{card.name}</span>
+                    <span className="last-transaction-description card-list-text">
+                      Namain Card
+                    </span>
+                    <span className="last-transaction-date card-list-name">
+                      {card.name}
+                    </span>
                   </div>
-                  <span className="last-transaction-description card-list-view">View Details</span>
+                  <span className="last-transaction-description card-list-view">
+                    View Details
+                  </span>
                 </div>
               ))}
             </div>
@@ -85,25 +123,38 @@ const CreditCards = ({cards, cardList, cardAdditionList, cardSettingData}) => {
             </div>
             <div className="add-card-box">
               <div className="add-card-description">
-                <span>Lorem, ipsum dolor sit amet consectetur adipisicing elit. Magnam, beatae ex maiores explicabo, aspernatur hic, in incidunt corporis amet omnis nobis unde sint atque possimus odio dolor repudiandae? Voluptatum, quidem.</span>
+                <span>
+                  Lorem, ipsum dolor sit amet consectetur adipisicing elit.
+                  Magnam, beatae ex maiores explicabo, aspernatur hic, in
+                  incidunt corporis amet omnis nobis unde sint atque possimus
+                  odio dolor repudiandae? Voluptatum, quidem.
+                </span>
               </div>
 
               <div className="add-card-form">
                 <div className="add-card-form-info">
                   <label>Card Type</label>
-                  <AddCard searchBox={cardAdditionList.find((item) => item.id == 1)} />
+                  <AddCard
+                    searchBox={cardAdditionList.find((item) => item.id == 1)}
+                  />
                 </div>
                 <div className="add-card-form-info">
                   <label>Name On Card</label>
-                  <AddCard searchBox={cardAdditionList.find((item) => item.id == 2)} />
+                  <AddCard
+                    searchBox={cardAdditionList.find((item) => item.id == 2)}
+                  />
                 </div>
                 <div className="add-card-form-info">
                   <label>Card Number</label>
-                  <AddCard searchBox={cardAdditionList.find((item) => item.id == 3)} />
+                  <AddCard
+                    searchBox={cardAdditionList.find((item) => item.id == 3)}
+                  />
                 </div>
                 <div className="add-card-form-info">
                   <label>Expiration Date</label>
-                  <AddCard searchBox={cardAdditionList.find((item) => item.id == 4)} />
+                  <AddCard
+                    searchBox={cardAdditionList.find((item) => item.id == 4)}
+                  />
                 </div>
               </div>
               <div className="add-button">
@@ -119,12 +170,19 @@ const CreditCards = ({cards, cardList, cardAdditionList, cardSettingData}) => {
             <div className="card-setting-box">
               {cardSettingData.map((setting) => (
                 <div className="card-setting-item">
-                  <div className="card-setting-icon" style={{backgroundColor: setting.backgroundColor}}>
+                  <div
+                    className="card-setting-icon"
+                    style={{ backgroundColor: setting.backgroundColor }}
+                  >
                     <img src={setting.image}></img>
                   </div>
                   <div className="card-setting-details">
-                    <span className="last-transaction-description card-setting-name">{setting.name}</span>
-                    <span className="last-transaction-date card-setting-description">{setting.description}</span>
+                    <span className="last-transaction-description card-setting-name">
+                      {setting.name}
+                    </span>
+                    <span className="last-transaction-date card-setting-description">
+                      {setting.description}
+                    </span>
                   </div>
                 </div>
               ))}

@@ -12,6 +12,7 @@ export default function useWindowWidth() {
   return {
     isBrowser: width > 950,
     isTablet: width > 800 && width <= 950,
-    isMobile: width <= 800
+    isMobile: width > 650 && width <= 800,
+    isNormal: width <= 650
   };
 }

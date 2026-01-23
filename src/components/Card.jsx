@@ -23,8 +23,8 @@ function Card({ card }) {
   let spanProperty = { color: spanColor };
   let mainProperty = { color: mainColor };
 
-  const { isTablet, isBrowser } = useWindowWidth();
-  if (isBrowser || isTablet) {
+  const { isTablet, isBrowser, isNormal } = useWindowWidth();
+  if (isBrowser || isTablet || isNormal) {
     cardNumber = cardNumber;
   } else {
     cardNumber = cardNumber.slice(4);

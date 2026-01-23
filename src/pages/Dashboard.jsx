@@ -2,6 +2,7 @@ import { NavLink } from "react-router-dom";
 import Card from "../components/Card";
 import { createPortal } from "react-dom";
 import useWindowWidth from "../hooks/useWindowWidth.js";
+import SearchBar from "../components/SearchBar.jsx";
 
 import {
   BarChart,
@@ -23,10 +24,10 @@ import { useState } from "react";
 
 
 function DashboardTransactions({ recentTransactions }) {
-  const { isBrowser, isMobile } = useWindowWidth();
+  const { isBrowser, isMobile, isNormal, isTablet } = useWindowWidth();
 
   const formatTransactionDescription = (description) => {
-    if (!isMobile) return description;
+    if (isBrowser || isTablet || isNormal) return description;
     if (!description) return description;
 
     const normalized = String(description).trim().toLowerCase();
@@ -39,7 +40,9 @@ function DashboardTransactions({ recentTransactions }) {
     }
 
     return description;
+
   };
+
   
   return (
     <>
@@ -325,20 +328,27 @@ const Dashboard = ({
   weeklyActivityData,
   boxExpenseData,
   personnels,
-  balanceTableData
+  balanceTableData,
+  transactionInfo
 }) => {
 
-  const { isMobile } = useWindowWidth();
+  const { isMobile, isNormal } = useWindowWidth();
 
   const firstCard = cards.find((item) => item.id == 1);
   const secondCard = cards.find((item) => item.id == 2);
 
+  const cardText = (isNormal) ? "My Card" : "My Cards";
+
   return (
     <div className="dashboard-container">
+      <div className="header-side-content" style={{marginBottom: "1rem"}}>
+        {isNormal && <SearchBar transactions={transactionInfo}/>}
+      </div>
+
       <div className="main-dash-content">
         <div className="card">
           <div className="main-card-text">
-            <p>My Cards</p>
+            <p>{cardText}</p>
           </div>
         
           <Card card={firstCard} />

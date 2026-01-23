@@ -19,7 +19,6 @@ import Profile from "../pages/Setting/Profile";
 import Preferences from "../pages/Setting/Preferences";
 import Security from "../pages/Setting/Security";
 
-import Insights from "../pages/Insights";
 
 const Body = ({
   transactionInfo,
@@ -44,7 +43,7 @@ const Body = ({
   loanDetails,
   loanTotal,
   serviceBalances,
-  services
+  services,
 }) => {
   const incomeTransactions = [];
   const expensesTransactions = [];
@@ -77,6 +76,7 @@ const Body = ({
               boxExpenseData={boxExpenseData}
               personnels={personnels.slice(0, 3)}
               balanceTableData={balanceTableData}
+              transactionInfo={transactionInfo}
             />
           }
         />
@@ -114,6 +114,7 @@ const Body = ({
               cards={cardInfo}
               accountsData={accountsData}
               invoices={invoices}
+              transactionInfo={transactionInfo}
             />
           }
         />
@@ -126,19 +127,49 @@ const Body = ({
               revenueData={revenueData}
               investments={investments}
               stockData={stockData}
+              transactionInfo={transactionInfo}
             />
           }
         />
-        <Route path="/creditcards" element={<CreditCards cards={cardInfo} cardList={cardList} cardAdditionList={cardAdditionList} cardSettingData={cardSettingData}/>} />
-        <Route path="/loans" element={<Loans loanBalances={loanBalances} loanDetails={loanDetails} loanTotal={loanTotal}/>} />
-        <Route path="/services" element={<Services serviceBalances={serviceBalances} services={services} />} />
+        <Route
+          path="/creditcards"
+          element={
+            <CreditCards
+              cards={cardInfo}
+              cardList={cardList}
+              cardAdditionList={cardAdditionList}
+              cardSettingData={cardSettingData}
+              transactionInfo={transactionInfo}
+            />
+          }
+        />
+        <Route
+          path="/loans"
+          element={
+            <Loans
+              loanBalances={loanBalances}
+              loanDetails={loanDetails}
+              loanTotal={loanTotal}
+              transactionInfo={transactionInfo}
+            />
+          }
+        />
+        <Route
+          path="/services"
+          element={
+            <Services
+              serviceBalances={serviceBalances}
+              services={services}
+              transactionInfo={transactionInfo}
+            />
+          }
+        />
         <Route path="/setting" element={<Setting />}>
           <Route index element={<Navigate to="profile" replace />} />
           <Route path="profile" element={<Profile />} />
           <Route path="preferences" element={<Preferences />} />
           <Route path="security" element={<Security />} />
         </Route>
-        <Route path="/insights" element={<Insights />} />
       </Routes>
     </main>
   );

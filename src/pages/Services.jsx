@@ -1,14 +1,19 @@
 import BalanceSection from "../components/Balance";
 import useWindowWidth from "../hooks/useWindowWidth";
+import SearchBar from "../components/SearchBar";
 
-const Services = ({serviceBalances, services}) => {
+const Services = ({serviceBalances, services, transactionInfo}) => {
 
-  const { isMobile } = useWindowWidth();
+  const { isMobile, isNormal } = useWindowWidth();
 
   const visibleServiceBalances = isMobile ? serviceBalances.slice(0, 2) : serviceBalances;
 
   return (
     <div className="accounts-container">
+      <div className="component-search">
+        {isNormal && <SearchBar transactions={transactionInfo}/>}
+      </div>
+
       <BalanceSection balances={visibleServiceBalances} />
 
       <div className="loan-overview">

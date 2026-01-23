@@ -11,6 +11,8 @@ import {
 import Card from "../../components/Card";
 import { NavLink, Outlet } from "react-router-dom";
 import Navigation from "../../components/Navigation";
+import useWindowWidth from "../../hooks/useWindowWidth";
+import SearchBar from "../../components/SearchBar";
 
 function TransactionExpensesChart({ transactionExpenses }) {
   return (
@@ -189,8 +191,13 @@ const Transaction = ({
     { label: "Expenses", to: "/transactions/expenses" },
   ];
 
+  const { isNormal } = useWindowWidth();
+
   return (
     <div className="main-transaction">
+      <div className="component-search">
+        {isNormal && <SearchBar transactions={transactionInfo}/>}
+      </div>
       <div className="main-dash-content">
         <div className="card">
           <div className="main-card-text">

@@ -1,52 +1,59 @@
-import BalanceSection from "../components/Balance"
-import useWindowWidth from "../hooks/useWindowWidth"
+import BalanceSection from "../components/Balance";
+import useWindowWidth from "../hooks/useWindowWidth";
+import SearchBar from "../components/SearchBar";
 
-const Loans = ({loanBalances, loanDetails, loanTotal}) => {
-  const { isMobile } = useWindowWidth();
+const Loans = ({ loanBalances, loanDetails, loanTotal, transactionInfo }) => {
+  const { isMobile, isNormal } = useWindowWidth();
 
-  const visibleLoanBalances = isMobile ? loanBalances.slice(0, 2) : loanBalances;
+  const visibleLoanBalances = isMobile
+    ? loanBalances.slice(0, 2)
+    : loanBalances;
 
   return (
     <div className="accounts-container">
+      <div className="component-search">
+        {isNormal && <SearchBar transactions={transactionInfo} />}
+      </div>
+
       <BalanceSection balances={visibleLoanBalances} />
 
       <div className="loan-overview">
-          <div className="loan-overview-text">
-            <p>Active Loan Overview</p>
+        <div className="loan-overview-text">
+          <p>Active Loan Overview</p>
+        </div>
+        <div className="loan-overview-box">
+          <div className="loan-overview-items">
+            <span>SL No</span>
+            <span>Loan Name</span>
+            <span>Left to repay</span>
+            <span>Duration</span>
+            <span>Interest rate</span>
+            <span>Installment</span>
+            <span>Repay</span>
           </div>
-          <div className="loan-overview-box">
-            <div className="loan-overview-items">
-              <span>SL No</span>
-              <span>Loan Name</span>
-              <span>Left to repay</span>
-              <span>Duration</span>
-              <span>Interest rate</span>
-              <span>Installment</span>
-              <span>Repay</span>
-            </div>
-            <span className="trending-stock-borderline"></span>
-            <div className="loan-detail-container">
-              {loanDetails.map((loan, index) => (
-                <div className="loan-detail-box">
-                  <span>{loan.id}</span>
-                  <span>${loan.amount}</span>
-                  <span>${loan.repay}</span>
-                  <span>{loan.duration}</span>
-                  <span>{loan.interest}</span>
-                  <span>{loan.installment}</span>
-                  <span className="loan-repay-button">Repay</span>
-                </div>
-              ))}
-              <div className="loan-detail-box total-details">
-                <span>Total</span>
-                <span>${loanTotal.totalAmount}</span>
-                <span>${loanTotal.totalRepay}</span>
-                <span></span>
-                <span></span>
-                <span>${loanTotal.totalInstallment}/month</span>
+          <span className="trending-stock-borderline"></span>
+          <div className="loan-detail-container">
+            {loanDetails.map((loan, index) => (
+              <div className="loan-detail-box">
+                <span>{loan.id}</span>
+                <span>${loan.amount}</span>
+                <span>${loan.repay}</span>
+                <span>{loan.duration}</span>
+                <span>{loan.interest}</span>
+                <span>{loan.installment}</span>
+                <span className="loan-repay-button">Repay</span>
               </div>
+            ))}
+            <div className="loan-detail-box total-details">
+              <span>Total</span>
+              <span>${loanTotal.totalAmount}</span>
+              <span>${loanTotal.totalRepay}</span>
+              <span></span>
+              <span></span>
+              <span>${loanTotal.totalInstallment}/month</span>
             </div>
-            {/* <div className="loan-detail-container">
+          </div>
+          {/* <div className="loan-detail-container">
               <div className="loan-detail-box">
                 <span>01.</span>
                 <span>$100,000</span>
@@ -131,7 +138,7 @@ const Loans = ({loanBalances, loanDetails, loanTotal}) => {
         </div>
       </div>
     </div>
-  )
-}
+  );
+};
 
 export default Loans;

@@ -1,16 +1,13 @@
 import { LineChart, Line, XAxis, YAxis, CartesianGrid, ResponsiveContainer } from "recharts"
 import BalanceSection from "../components/Balance"
-import useWindowWidth from "../hooks/useWindowWidth"
+import useWindowWidth from "../hooks/useWindowWidth";
+import SearchBar from "../components/SearchBar";
 
-const Investments = ({investmentBalances, investmentData, revenueData, investments, stockData}) => {
+const Investments = ({investmentBalances, investmentData, revenueData, investments, stockData, transactionInfo}) => {
 
-  const { isBrowser } = useWindowWidth();
+  const { isBrowser, isNormal } = useWindowWidth();
   
-    const visibleInvestmentBalances = (!isBrowser) ? investmentBalances.slice(0, 2) : investmentBalances;
-
-  // investments = (!isBrowser) ? investments.slice(0, 3) : investments;
-
-  // stockData = (!isBrowser) ? stockData.slice(0, 3) : stockData;
+  const visibleInvestmentBalances = (!isBrowser) ? investmentBalances.slice(0, 2) : investmentBalances;
 
   function InvestmentLineChart() {
     return (
@@ -54,6 +51,10 @@ const Investments = ({investmentBalances, investmentData, revenueData, investmen
 
   return (
     <div className="investments-container">
+      <div className="component-search">
+        {isNormal && <SearchBar transactions={transactionInfo}/>}
+      </div>
+
       <BalanceSection balances={visibleInvestmentBalances} />
       <div className="investment-and-revenue">
         <div className="yearly-investment">

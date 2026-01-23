@@ -11,22 +11,31 @@ import {
   CartesianGrid,
 } from "recharts";
 import useWindowWidth from "../hooks/useWindowWidth";
+import SearchBar from "../components/SearchBar";
 
-const Accounts = ({accountBalances, transactions, cards, accountsData, invoices}) => 
-{
+const Accounts = ({
+  accountBalances,
+  transactions,
+  cards,
+  accountsData,
+  invoices,
+  transactionInfo,
+}) => {
+  const { isBrowser, isNormal } = useWindowWidth();
 
-  const { isBrowser } = useWindowWidth();
-  
-  const visibleAccountBalances = (!isBrowser) ? accountBalances.slice(0, 3) : accountBalances;
+  const visibleAccountBalances = !isBrowser
+    ? accountBalances.slice(0, 3)
+    : accountBalances;
 
-  function AccountBarChart({accountsData}) {
+  function AccountBarChart({ accountsData }) {
+    const visibleAccountData = !isBrowser
+      ? accountsData.slice(0, 5)
+      : accountsData;
+
     return (
       <div style={{ height: "18rem", marginTop: "1.7rem" }}>
         <ResponsiveContainer width={"95%"} height={"100%"}>
-          <BarChart
-            data={accountsData}
-            barGap={10}
-          >
+          <BarChart data={visibleAccountData} barGap={10}>
             <XAxis
               dataKey="date"
               tick={{
@@ -53,12 +62,16 @@ const Accounts = ({accountBalances, transactions, cards, accountsData, invoices}
             ></Bar>
           </BarChart>
         </ResponsiveContainer>
-      </div>  
-    )
+      </div>
+    );
   }
 
   return (
     <div className="accounts-container">
+      <div className="component-search">
+        {isNormal && <SearchBar transactions={transactionInfo} />}
+      </div>
+
       <BalanceSection balances={visibleAccountBalances} />
 
       <div className="transaction-and-card">
@@ -77,13 +90,20 @@ const Accounts = ({accountBalances, transactions, cards, accountsData, invoices}
             {transactions.map((transaction, index) => (
               <div className="transaction-content" key={index}>
                 <div className="transaction-description">
-                  <img src={transaction.image} style={{backgroundColor: transaction.background}}></img>
+                  <img
+                    src={transaction.image}
+                    style={{ backgroundColor: transaction.background }}
+                  ></img>
                   <div className="last-transaction-details">
-                    <span className="last-transaction-description">{transaction.description}</span>
-                    <span className="last-transaction-date">{transaction.date.slice(0, 6) + ", " +  transaction.time}</span>
+                    <span className="last-transaction-description">
+                      {transaction.description}
+                    </span>
+                    <span className="last-transaction-date">
+                      {transaction.date.slice(0, 6) + ", " + transaction.time}
+                    </span>
                   </div>
                 </div>
-                
+
                 {/* <div className="last-transaction-details">
                   <span className="last-transaction-description">{transaction.description}</span>
                   <span className="last-transaction-date">{transaction.date.slice(0, 6) + ", " +  transaction.time}</span>
@@ -91,7 +111,12 @@ const Accounts = ({accountBalances, transactions, cards, accountsData, invoices}
                 <span className="transaction-type">{transaction.type}</span>
                 <span className="transaction-card">{transaction.card}</span>
                 <span className="transaction-status">Completed</span>
-                <span style={{ color: transaction.color() }}  className="last-transaction-amount spotify-transaction-amount">{transaction.cost}</span>
+                <span
+                  style={{ color: transaction.color() }}
+                  className="last-transaction-amount spotify-transaction-amount"
+                >
+                  {transaction.cost}
+                </span>
               </div>
             ))}
           </div>
@@ -118,7 +143,9 @@ const Accounts = ({accountBalances, transactions, cards, accountsData, invoices}
           </div>
           <div className="overview-box">
             <div className="overview-description">
-              <span className="overview-description-text"><b>$7,560</b> Debited & <b>$5,420</b> Credited In this Week</span>
+              <span className="overview-description-text">
+                <b>$7,560</b> Debited & <b>$5,420</b> Credited In this Week
+              </span>
               <div className="overview-indicators">
                 <div className="debit-indicator">
                   <span></span>
@@ -154,7 +181,7 @@ const Accounts = ({accountBalances, transactions, cards, accountsData, invoices}
         </div>
       </div>
     </div>
-  )
-}
+  );
+};
 
-export default Accounts
+export default Accounts;
